@@ -1,0 +1,17 @@
+[33mcommit 8fe44d261d546569f7e4ac021296f73e923cad30[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: Lance <lanceward410@gmail.com>
+Date:   Tue Jun 4 00:16:52 2024 -0400
+
+    Second rendition of HEIC to PNG converter. Has html/css javascript front end, node.js and aws-s3 backend. Should be able to convert multiple photos from .HEIC to .png soon, should be portable on a flash drive. all notes taken until this point are on paper, none to commit.
+
+[33mcommit e00be5710149343c8e0281ee63eea298960fc1fa[m
+Author: Lance <lanceward410@gmail.com>
+Date:   Tue Jun 4 00:14:24 2024 -0400
+
+    Second rendition of HEIC to PNG converter. Has html/css javascript front end, node.js and aws-s3 backend. Should be able to convert multiple photos from .HEIC to .png soon, should be portable on a flash drive. all notes taken until this point are on paper, none to commit.
+
+[33mcommit 558abf770d74537a84161a0e8c9661981abeac44[m
+Author: Lance <lanceward410@gmail.com>
+Date:   Tue Jun 4 00:04:17 2024 -0400
+
+    Second rendition of HEIC to PNG converter. Has html/css javascript front end, node.js and aws-s3 backend. Should be able to convert multiple photos from .HEIC to .png soon, should be portable on a flash drive. all notes taken until this point are on paper, none to commit.
