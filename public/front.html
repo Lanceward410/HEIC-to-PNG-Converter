@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HEIC to PNG Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .progress {
+      display: none;
+      margin-top: 10px;
+    }
+    .status {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HEIC to PNG Converter</h1>
+    <input type="file" id="fileInput" multiple accept=".heic">
+    <button id="uploadBtn">Upload</button>
+    <div class="progress" id="progressBar">
+      <progress value="0" max="100"></progress>
+    </div>
+    <div class="status" id="statusMessage"></div>
+  </div>
+  <script>
+    document.getElementById('uploadBtn').addEventListener('click', async () => {
+      const fileInput = document.getElementById('fileInput');
+      const statusMessage = document.getElementById('statusMessage');
+      const progressBar = document.getElementById('progressBar');
+      progressBar.style.display = 'block';
+      statusMessage.innerText = '';
+
+      if (fileInput.files.length === 0) {
+        statusMessage.innerText = 'No files selected';
+        return;
+      }
+
+      const formData = new FormData();
+      for (let i = 0; i < fileInput.files.length; i++) {
+        formData.append('files', fileInput.files[i]);
+      }
+
+      try {
+        const response = await fetch('http://localhost:5000/upload', {
+          method: 'POST',
+          body: formData,
+          onprogress: (event) => {
+            if (event.lengthComputable) {
+              const percentComplete = (event.loaded / event.total) * 100;
+              document.querySelector('progress').value = percentComplete;
+            }
+          },
+        });
+
+        const result = await response.json();
+        if (response.ok) {
+          statusMessage.innerText = 'Files converted and uploaded successfully';
+        } else {
+          statusMessage.innerText = `Error: ${result.error}`;
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        statusMessage.innerText = 'Error uploading files';
+      }
+    });
+  </script>
+</body>
+</html>
